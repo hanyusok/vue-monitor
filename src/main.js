@@ -1,5 +1,6 @@
-import './assets/main.css'
+window.global ||= window;
 
+import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
