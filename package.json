@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "node-firebird": "^1.1.5",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
