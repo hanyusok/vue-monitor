@@ -18,33 +18,43 @@ const options = {
   pageSize: 4096,
 };
 
-let fbResult = reactive([]);
+// let fbResult = reactive([]);
 let sql = "";
 sql = "SELECT * FROM EMPLOYEE";
 
-// const getfbData = computed(() => {
-const getfbData = () => {
-  fb.attach(options, (err, db) => {
-    if (err) {
-      console.error("Error connecting to the database: ", err);
-      return;
-    }
-    db.query(slq, (err, result) => {
+export default {
+  data() {
+    return {
+      fbResult: [],
+    };
+  },
+
+  // const getfbData = computed(() => {
+  // const getfbData = () => {
+  // let fbResult = reactive([]);
+  mounted() {
+    fb.attach(options, (err, db) => {
       if (err) {
-        console.error("Error executing the query: ", err);
+        console.error("Error connecting to the database: ", err);
         return;
       }
-      fbResult = result;
+      db.query(slq, (err, result) => {
+        if (err) {
+          console.error("Error executing the query: ", err);
+          return;
+        }
+        fbResult = result;
 
-      db.detach();
+        db.detach();
+      });
     });
-  });
+  },
 };
 </script>
 
 <template>
   <h1>home</h1>
   <h4>Result:</h4>
-  <button @click="getfbData">get data</button>
+  <!-- <button @click="getfbData">get data</button> -->
   <div v-bind="fbResult"></div>
 </template>
